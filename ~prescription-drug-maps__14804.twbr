@@ -6,8 +6,6 @@
     <AccessibleZoneTabOrder />
     <AnimationOnByDefault />
     <AutoCreateAndUpdateDSDPhoneLayouts />
-    <BasicButtonObject />
-    <CollapsiblePane />
     <IntuitiveSorting />
     <IntuitiveSorting_SP2 />
     <MapboxVectorStylesAndLayers />
@@ -32,6 +30,12 @@
         <named-connections>
           <named-connection caption='prescriptions_per_zipcode_TN' name='textscan.1dqsggi1fost2v12gkkiy0v2kj3z'>
             <connection class='textclean' cleaning='yes' compat='no' csvFile='C:/Users/School2/Documents/NSS-DA16/tableau/projects/prescription-drug-tableau/csv/prescriptions_per_zipcode_TN.csv' dataRefreshTime='' directory='C:/Users/School2/Documents/NSS-DA16/tableau/projects/prescription-drug-tableau/csv' filename='C:/Users/School2/AppData/Local/Temp/TableauTemp/0ppfhe01t62mol1512efi1r9am86/prescriptions_per_zipcode_TN.csv.xlsx' interpretationMode='8' password='' server='' validate='no' />
+          </named-connection>
+          <named-connection caption='TN_zipcode_list' name='excel-direct.1vqjwqf06t5wjx175xcnv1jtajqz'>
+            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/School2/Documents/NSS-DA16/tableau/projects/prescription-drug-tableau/csv/TN_zipcode_list.csv' interpretationMode='0' password='' server='' validate='no' />
+          </named-connection>
+          <named-connection caption='TN_zipcode_list (2)' name='textscan.0kpsp7m1tpi6ck19ywobz13vywxj'>
+            <connection class='textscan' directory='C:/Users/School2/Documents/NSS-DA16/tableau/projects/prescription-drug-tableau/csv' filename='TN_zipcode_list.csv' password='' server='' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.1dqsggi1fost2v12gkkiy0v2kj3z' name='prescriptions_per_zipcode_TN.csv' table='[prescriptions_per_zipcode#csv$]' type='table'>
@@ -178,7 +182,7 @@
           <groupfilter function='level-members' level='[zip]' />
         </groupfilter>
       </group>
-      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='false' object-id='' units='records'>
         <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='C:/Users/School2/AppData/Local/Temp/TableauTemp/#TableauTemp_018z1xn17xtgre10h7g530ryfq2c.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='06/20/2025 03:46:12 PM' username='tableau_internal_user'>
           <relation name='Extract' table='[Extract].[Extract]' type='table' />
           <metadata-records>
@@ -1572,28 +1576,28 @@
     <mapsource name='Tableau' />
   </mapsources>
   <actions>
-    <action caption='Filter 2 (generated)' name='[Action2_545A883FD1C243B6AE70DC570AF30DC2]'>
+    <action caption='Filter 2 (generated) 1' name='[Action4_89818DCFAEC346E7B3A229462F8F8A92]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 1' type='sheet' worksheet='Antibiotic %' />
+      <source dashboard='Maps Dashboard' type='sheet' worksheet='Antibiotic %' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 1' />
+        <param name='target' value='Maps Dashboard' />
       </command>
     </action>
-    <action caption='Filter 3 (generated)' name='[Action3_94BFAB457C3E49EF83F56FF6769A8990]'>
+    <action caption='Filter 3 (generated) 1' name='[Action5_350C1BAE6EB34F32A5D2077EB7C3BB73]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 1' type='sheet' worksheet='Antipsychotics %' />
+      <source dashboard='Maps Dashboard' type='sheet' worksheet='Antipsychotics %' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 1' />
+        <param name='target' value='Maps Dashboard' />
       </command>
     </action>
-    <action caption='Filter 4 (generated)' name='[Action4_032D481FD1B14E28AC55481D67041696]'>
+    <action caption='Filter 4 (generated) 1' name='[Action6_DD9F095E98474481A8CB2B9555ACAE4E]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 1' type='sheet' worksheet='Opiods %' />
+      <source dashboard='Maps Dashboard' type='sheet' worksheet='Opiods %' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 1' />
+        <param name='target' value='Maps Dashboard' />
       </command>
     </action>
   </actions>
@@ -1639,6 +1643,13 @@
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911481106435:qk]' palette='blue_10_0' type='interpolated' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911481106435:qk]' value='Percent Antibiotics'>
+              <formatted-text>
+                <run fontalignment='1'>Percent Antibiotics</run>
+              </formatted-text>
+            </format>
           </style-rule>
           <style-rule element='map'>
             <format attr='washout' value='0.0' />
@@ -1702,8 +1713,8 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]' field-type='quantitative' max='-9071466.8697111905' min='-10077847.336258378' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]' field-type='quantitative' max='4727461.4311088761' min='3998703.1911881301' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]' field-type='quantitative' max='-9056893.5770173781' min='-10100297.821579261' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]' field-type='quantitative' max='4581967.5895122727' min='4084215.8792070867' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911480385538:qk]' type='custom-interpolated'>
@@ -1721,6 +1732,13 @@
                 <color>#7c4d79</color>
               </color-palette>
             </encoding>
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911480385538:qk]' value='Percent Antipsychotics'>
+              <formatted-text>
+                <run fontalignment='1'>Percent Antipsychotics</run>
+              </formatted-text>
+            </format>
           </style-rule>
           <style-rule element='map'>
             <format attr='washout' value='0.0' />
@@ -1789,11 +1807,18 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]' field-type='quantitative' max='-9057773.9610711262' min='-10094240.995886672' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]' field-type='quantitative' max='4751948.9294012394' min='3998517.1527872565' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]' field-type='quantitative' max='-9045136.0255399775' min='-10123866.679677796' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]' field-type='quantitative' max='4603056.3168292893' min='4088452.2878978304' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911477440513:qk]' palette='red_10_0' type='interpolated' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911477440513:qk]' value='Percent Opiods'>
+              <formatted-text>
+                <run fontalignment='1'>Percent Opiods</run>
+              </formatted-text>
+            </format>
           </style-rule>
           <style-rule element='map'>
             <format attr='washout' value='0.0' />
@@ -2253,11 +2278,18 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]' field-type='quantitative' max='-9063504.8632970937' min='-10077177.078465682' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]' field-type='quantitative' max='4556907.2610866092' min='3899672.0956624979' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]' field-type='quantitative' max='-9048128.0498821009' min='-10106753.41420334' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]' field-type='quantitative' max='4610789.3957613166' min='4103663.4853907595' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911750004740:qk]' palette='green_10_0' type='interpolated' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911750004740:qk]' value='Percent Other'>
+              <formatted-text>
+                <run fontalignment='1'>Percent Other</run>
+              </formatted-text>
+            </format>
           </style-rule>
           <style-rule element='map'>
             <format attr='washout' value='0.0' />
@@ -3376,26 +3408,441 @@
             <column-instance column='[zip]' derivation='None' name='[none:zip:ok]' pivot='key' type='ordinal' />
             <column aggregation='Sum' caption='Zip' datatype='integer' default-format='*00000' name='[zip]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
           </datasource-dependencies>
-          <filter class='categorical' column='[federated.004c8a214exh11121q6711j4he8j].[Action (Zip)]'>
-            <groupfilter function='level-members' level='[zip]' user:ui-action-filter='[Action2_545A883FD1C243B6AE70DC570AF30DC2]' user:ui-enumeration='all' user:ui-marker='enumerate' />
-          </filter>
-          <filter class='quantitative' column='[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]' included-values='non-null' />
-          <filter class='quantitative' column='[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]' included-values='non-null' />
           <filter class='categorical' column='[federated.004c8a214exh11121q6711j4he8j].[none:zip:ok]'>
-            <groupfilter function='level-members' level='[none:zip:ok]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:zip:ok]' member='6320' />
+              <groupfilter function='member' level='[none:zip:ok]' member='27215' />
+              <groupfilter function='member' level='[none:zip:ok]' member='31643' />
+              <groupfilter function='member' level='[none:zip:ok]' member='34742' />
+              <groupfilter function='member' level='[none:zip:ok]' member='35870' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37012' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37013' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37015' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37020' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37025' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37027' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37029' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37030' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37033' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37034' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37035' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37040' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37042' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37043' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37046' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37049' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37055' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37058' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37060' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37061' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37062' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37064' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37066' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37067' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37069' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37072' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37073' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37074' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37075' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37076' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37077' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37080' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37082' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37083' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37086' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37087' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37088' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37090' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37091' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37096' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37097' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37098' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37101' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37110' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37111' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37115' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37122' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37127' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37128' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37129' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37130' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37132' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37134' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37135' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37138' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37140' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37146' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37148' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37150' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37160' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37166' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37167' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37172' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37174' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37179' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37180' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37183' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37184' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37185' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37186' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37187' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37188' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37190' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37201' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37203' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37204' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37205' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37206' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37207' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37208' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37209' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37210' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37211' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37212' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37214' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37215' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37216' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37217' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37218' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37219' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37220' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37221' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37228' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37232' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37236' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37240' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37243' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37301' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37302' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37303' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37307' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37308' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37310' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37311' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37312' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37313' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37315' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37317' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37318' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37320' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37321' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37322' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37323' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37324' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37327' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37329' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37330' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37331' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37334' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37341' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37342' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37343' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37347' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37350' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37352' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37353' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37354' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37355' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37356' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37357' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37361' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37363' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37365' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37367' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37373' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37375' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37377' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37379' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37380' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37381' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37387' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37388' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37389' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37391' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37397' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37398' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37401' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37402' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37403' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37404' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37405' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37406' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37408' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37409' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37410' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37411' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37412' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37415' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37416' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37419' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37421' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37601' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37604' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37605' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37614' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37615' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37617' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37618' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37620' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37642' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37643' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37650' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37659' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37660' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37662' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37663' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37664' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37681' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37683' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37684' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37686' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37687' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37692' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37701' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37705' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37708' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37709' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37711' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37715' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37716' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37721' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37725' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37738' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37742' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37743' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37745' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37748' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37752' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37753' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37756' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37757' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37760' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37762' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37763' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37764' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37766' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37769' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37771' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37772' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37774' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37777' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37780' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37801' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37802' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37803' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37804' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37807' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37813' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37814' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37820' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37821' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37825' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37828' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37830' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37831' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37840' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37841' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37843' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37849' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37852' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37854' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37857' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37861' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37862' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37863' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37865' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37869' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37870' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37871' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37874' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37876' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37877' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37879' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37885' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37887' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37888' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37890' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37892' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37902' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37909' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37912' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37914' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37915' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37916' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37917' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37918' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37919' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37920' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37921' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37922' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37923' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37924' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37931' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37932' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37934' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37938' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37992' />
+              <groupfilter function='member' level='[none:zip:ok]' member='37995' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38001' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38002' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38004' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38006' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38008' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38011' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38012' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38014' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38016' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38017' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38018' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38019' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38024' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38028' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38034' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38037' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38039' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38040' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38049' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38052' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38053' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38054' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38058' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38059' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38060' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38063' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38066' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38068' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38069' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38075' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38079' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38080' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38101' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38103' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38104' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38105' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38106' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38107' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38108' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38109' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38111' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38112' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38114' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38115' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38116' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38117' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38118' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38119' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38120' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38122' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38125' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38126' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38127' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38128' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38132' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38133' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38134' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38135' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38137' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38138' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38139' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38141' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38157' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38163' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38174' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38175' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38201' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38222' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38225' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38229' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38230' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38233' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38236' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38237' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38240' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38242' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38251' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38253' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38257' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38260' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38261' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38301' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38305' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38310' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38317' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38320' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38326' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38329' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38330' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38340' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38343' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38344' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38351' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38355' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38356' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38357' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38358' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38362' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38363' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38367' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38369' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38370' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38372' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38374' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38375' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38382' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38401' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38425' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38449' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38450' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38462' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38464' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38468' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38469' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38472' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38474' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38478' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38485' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38501' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38503' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38504' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38506' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38507' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38544' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38549' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38551' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38553' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38555' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38556' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38558' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38562' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38563' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38570' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38571' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38572' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38574' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38580' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38583' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38585' />
+              <groupfilter function='member' level='[none:zip:ok]' member='38723' />
+              <groupfilter function='member' level='[none:zip:ok]' member='39066' />
+              <groupfilter function='member' level='[none:zip:ok]' member='39129' />
+              <groupfilter function='member' level='[none:zip:ok]' member='39813' />
+              <groupfilter function='member' level='[none:zip:ok]' member='75032' />
+              <groupfilter function='member' level='[none:zip:ok]' member='75035' />
+              <groupfilter function='member' level='[none:zip:ok]' member='75080' />
+              <groupfilter function='member' level='[none:zip:ok]' member='76904' />
+              <groupfilter function='member' level='[none:zip:ok]' member='77079' />
+              <groupfilter function='member' level='[none:zip:ok]' member='78758' />
+            </groupfilter>
           </filter>
           <slices>
-            <column>[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]</column>
-            <column>[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]</column>
             <column>[federated.004c8a214exh11121q6711j4he8j].[none:zip:ok]</column>
-            <column>[federated.004c8a214exh11121q6711j4he8j].[Action (Zip)]</column>
           </slices>
           <aggregation value='true' />
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]' field-type='quantitative' max='-6386543.5072894655' min='-7384963.8729338143' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]' field-type='quantitative' max='5166121.7584996102' min='4325346.7074822122' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Longitude (generated)]' field-type='quantitative' max='-7947264.0077466387' min='-11591300.683379978' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.004c8a214exh11121q6711j4he8j].[Latitude (generated)]' field-type='quantitative' max='5146726.7265399061' min='3145666.1418905086' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='table'>
             <format attr='omit-on-special' field='[federated.004c8a214exh11121q6711j4he8j].[none:zip:ok]' value='false' />
@@ -3457,17 +3904,17 @@
     </worksheet>
   </worksheets>
   <dashboards>
-    <dashboard enable-sort-zone-taborder='true' name='Dashboard 1'>
+    <dashboard enable-sort-zone-taborder='true' name='Maps Dashboard'>
       <style />
       <size maxheight='860' maxwidth='1550' sizing-mode='range' />
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='96882' id='36' param='horz' type-v2='layout-flow' w='97762' x='1119' y='1559'>
-            <zone h='96882' id='33' param='horz' type-v2='layout-flow' w='75384' x='1119' y='1559'>
-              <zone h='96882' id='31' type-v2='layout-basic' w='75384' x='1119' y='1559'>
-                <zone h='48342' id='7' param='horz' type-v2='layout-flow' w='75384' x='1119' y='1559'>
-                  <zone h='48342' id='5' type-v2='layout-basic' w='75384' x='1119' y='1559'>
-                    <zone h='48342' id='13' name='Opiods %' w='37687' x='1119' y='1559'>
+          <zone h='96882' id='36' param='horz' type-v2='layout-flow' w='98456' x='772' y='1559'>
+            <zone h='96882' id='33' param='horz' type-v2='layout-flow' w='98456' x='772' y='1559'>
+              <zone h='96882' id='31' type-v2='layout-basic' w='98456' x='772' y='1559'>
+                <zone h='48342' id='7' param='horz' type-v2='layout-flow' w='98456' x='772' y='1559'>
+                  <zone h='48342' id='5' type-v2='layout-basic' w='98456' x='772' y='1559'>
+                    <zone h='48342' id='13' name='Opiods %' show-title='false' w='49218' x='772' y='1559'>
                       <zone-style>
                         <format attr='border-color' value='#000000' />
                         <format attr='border-style' value='none' />
@@ -3475,7 +3922,7 @@
                         <format attr='margin' value='4' />
                       </zone-style>
                     </zone>
-                    <zone h='48342' id='15' name='Antipsychotics %' w='37697' x='38806' y='1559'>
+                    <zone h='48342' id='15' name='Antipsychotics %' show-title='false' w='49238' x='49990' y='1559'>
                       <zone-style>
                         <format attr='border-color' value='#000000' />
                         <format attr='border-style' value='none' />
@@ -3485,7 +3932,7 @@
                     </zone>
                   </zone>
                 </zone>
-                <zone h='48540' id='17' name='Antibiotic %' show-title='false' w='37692' x='1119' y='49901'>
+                <zone h='48540' id='17' name='Antibiotic %' show-title='false' w='49228' x='772' y='49901'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -3493,7 +3940,7 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone h='48540' id='34' name='Other %' w='37692' x='38811' y='49901'>
+                <zone h='48540' id='34' name='Other %' show-title='false' w='49228' x='50000' y='49901'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -3501,16 +3948,6 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-              </zone>
-            </zone>
-            <zone fixed-size='160' h='96882' id='35' is-fixed='true' param='vert' type-v2='layout-flow' w='22378' x='76503' y='1559'>
-              <zone h='4678' id='37' name='Other %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911750004740:qk]' type-v2='color' w='22378' x='76503' y='1559'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
               </zone>
             </zone>
           </zone>
@@ -3521,24 +3958,18 @@
             <format attr='margin' value='8' />
           </zone-style>
         </zone>
-        <zone h='4678' id='21' type-v2='dashboard-object' w='2249' x='84255' y='49903'>
-          <button action=''>
-            <toggle-action>tabdoc:toggle-button-click-action window-id=&quot;{7154163D-0486-41EA-9244-A2326148DA96}&quot; zone-id=&quot;21&quot; zone-ids=[3]</toggle-action>
-            <button-visual-state />
-            <button-visual-state />
-          </button>
-        </zone>
-        <zone h='17154' id='14' name='Opiods %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911477440513:qk]' type-v2='color' w='19580' x='11329' y='14815' />
-        <zone fixed-size='71' h='17154' id='16' is-fixed='true' name='Antipsychotics %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911480385538:qk]' type-v2='color' w='22238' x='47273' y='14230' />
-        <zone h='16959' id='18' name='Antibiotic %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911481106435:qk]' single-line='false' type-v2='color' w='19580' x='17622' y='58090' />
+        <zone h='18519' id='14' name='Opiods %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911477440513:qk]' type-v2='color' w='19580' x='21678' y='6238' />
+        <zone fixed-size='71' h='17154' id='16' is-fixed='true' name='Antipsychotics %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911480385538:qk]' type-v2='color' w='22238' x='64476' y='5458' />
+        <zone h='16959' id='18' name='Antibiotic %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911481106435:qk]' single-line='true' type-v2='color' w='19498' x='19691' y='52437' />
+        <zone h='17154' id='37' name='Other %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911750004740:qk]' type-v2='color' w='19595' x='67857' y='52827' />
       </zones>
       <devicelayouts>
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1450' minheight='1450' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='29' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='96882' id='28' param='vert' type-v2='layout-flow' w='98274' x='863' y='1559'>
-                <zone fixed-size='280' h='48342' id='13' is-fixed='true' name='Opiods %' w='41714' x='863' y='1559'>
+            <zone h='100000' id='41' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='96882' id='40' param='vert' type-v2='layout-flow' w='98456' x='772' y='1559'>
+                <zone fixed-size='280' h='48342' id='13' is-fixed='true' name='Opiods %' show-title='false' w='49218' x='772' y='1559'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -3547,7 +3978,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='14619' id='14' name='Opiods %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911477440513:qk]' type-v2='color' w='14963' x='84174' y='69200'>
+                <zone h='18519' id='14' name='Opiods %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911477440513:qk]' type-v2='color' w='19580' x='21678' y='6238'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -3556,7 +3987,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='280' h='48342' id='15' is-fixed='true' name='Antipsychotics %' w='41719' x='42577' y='1559'>
+                <zone fixed-size='280' h='48342' id='15' is-fixed='true' name='Antipsychotics %' show-title='false' w='49238' x='49990' y='1559'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -3565,7 +3996,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='71' h='14622' id='16' name='Antipsychotics %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911480385538:qk]' type-v2='color' w='14963' x='84174' y='83819'>
+                <zone fixed-size='71' h='17154' id='16' name='Antipsychotics %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911480385538:qk]' type-v2='color' w='22238' x='64476' y='5458'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -3574,7 +4005,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='280' h='48540' id='17' is-fixed='true' name='Antibiotic %' w='41653' x='863' y='49901'>
+                <zone fixed-size='280' h='48540' id='17' is-fixed='true' name='Antibiotic %' show-title='false' w='49228' x='772' y='49901'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -3583,7 +4014,25 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='19299' id='18' name='Antibiotic %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911481106435:qk]' single-line='false' type-v2='color' w='14963' x='84174' y='49901'>
+                <zone h='16959' id='18' name='Antibiotic %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911481106435:qk]' single-line='true' type-v2='color' w='19498' x='19691' y='52437'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='48540' id='34' is-fixed='true' name='Other %' show-title='false' w='49228' x='50000' y='49901'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='17154' id='37' name='Other %' pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[sum:Calculation_1041738911750004740:qk]' type-v2='color' w='19595' x='67857' y='52827'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -3603,10 +4052,10 @@
           </zones>
         </devicelayout>
       </devicelayouts>
-      <simple-id uuid='{9BCD6EAE-116E-4DCF-815E-8698187EE624}' />
+      <simple-id uuid='{50836F4A-3B14-40DB-A375-C4BE90082559}' />
     </dashboard>
   </dashboards>
-  <windows source-height='30'>
+  <windows show-side-pane='false' source-height='30'>
     <window class='worksheet' name='Opiods %'>
       <cards>
         <edge name='left'>
@@ -3719,7 +4168,7 @@
         </edge>
         <edge name='right'>
           <strip size='160'>
-            <card mode='dropdown' param='[federated.004c8a214exh11121q6711j4he8j].[none:zip:ok]' type='filter' />
+            <card param='[federated.004c8a214exh11121q6711j4he8j].[none:zip:ok]' type='filter' />
             <card pane-specification-id='0' param='[federated.004c8a214exh11121q6711j4he8j].[none:zip:ok]' type='color' />
           </strip>
         </edge>
@@ -3729,7 +4178,7 @@
       </viewpoint>
       <simple-id uuid='{6B3470F6-858F-47E5-B3A3-3A7322B46B91}' />
     </window>
-    <window class='dashboard' maximized='true' name='Dashboard 1'>
+    <window class='dashboard' name='Maps Dashboard'>
       <viewpoints>
         <viewpoint name='Antibiotic %'>
           <zoom type='entire-view' />
@@ -3745,10 +4194,11 @@
         </viewpoint>
         <viewpoint name='Other %'>
           <zoom type='entire-view' />
+          <default-map-tool-selection tool='1' />
         </viewpoint>
       </viewpoints>
-      <active id='34' />
-      <simple-id uuid='{7154163D-0486-41EA-9244-A2326148DA96}' />
+      <active id='15' />
+      <simple-id uuid='{35DE7CB2-E7AD-447E-8B36-7A172EFDC6AE}' />
     </window>
     <window class='worksheet' name='Top Opiods'>
       <cards>
@@ -3873,7 +4323,7 @@
       </viewpoint>
       <simple-id uuid='{4C8BA72E-9F00-400D-8E7A-43180B7E6AC0}' />
     </window>
-    <window class='worksheet' name='Sheet 10'>
+    <window class='worksheet' maximized='true' name='Sheet 10'>
       <cards>
         <edge name='left'>
           <strip size='160'>
